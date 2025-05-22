@@ -1,11 +1,17 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.vue';
+import '../styles/global.css';
+import { useStore } from '../store';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+    <main class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {useStore().products.map((product) => (
+            <ProductCard client:load product={product} />
+        ))}
+    </main>
 </Layout>
