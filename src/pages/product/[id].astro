@@ -1,0 +1,22 @@
+---
+import ProductDetail from '../../components/ProductDetail.vue'
+import Layout from '../../layouts/Layout.astro'
+
+// Obtén todos los productos para generar las rutas
+export async function getStaticPaths() {
+  const response = await fetch('http://localhost/php-api-ecommerce/get_products.php')
+  const result = await response.json()
+  const products = result.data ?? []
+
+  return products.map((product: { ID: number }) => ({
+    params: { id: String(product.ID) }
+  }))
+}
+
+const { id } = Astro.params
+---
+<Layout>
+    <main class="max-w-4xl mx-auto p-6">
+      <ProductDetail :id="id" />
+    </main>
+</Layout>
