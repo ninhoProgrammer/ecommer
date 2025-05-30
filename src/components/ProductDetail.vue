@@ -1,49 +1,53 @@
 <script setup>
-    import { ref, onMounted } from 'vue'
-    import { useRoute } from 'vue-router'
+import { ref, onMounted } from 'vue'
 
-    const route = useRoute()
-    const product = ref(null)
-    const error = ref('')
+const props = defineProps({
+  id: {
+    type: String,
+    required: true
+  }
+})
 
-    onMounted(async () => {
-        const id = route.params.id
-        console.log('🔍 Loading product with ID:', id)
-        try {
-            const response = await fetch(`http://localhost/php-api-ecommerce/get_product.php?id=${id}`)
-            const result = await response.json()
-            if (!response.ok) {
-                throw new Error(result.error || 'Failed to load product')
-            }
+const product = ref(null)
+const loading = ref(true)
+const error = ref(null)
 
-            if (result.success) {
-                console.log('✅ Product loaded:', result.data)
-                product.value = result.data
-            } 
-            else {
-                error.value = result.error || 'Product not found'
-            }
-        } 
-        catch (err) {
-            error.value = 'Network error: ' + err.message
-        }
-    })
+onMounted(async () => {
+  try {
+    const response = await fetch(`http://localhost/php-api-ecommerce/get_product.php?id=${props.id}`)
+    const result = await response.json()
+    if (!result.success) throw new Error('No se pudo cargar el producto')
+    // Normaliza las propiedades a minúsculas
+    product.value = {
+      id: result.data.ID,
+      name: result.data.NAME,
+      price: result.data.PRICE,
+      image: result.data.IMAGE
+    }
+  } catch (err) {
+    error.value = err.message
+  } finally {
+    loading.value = false
+  }
+})
+
+function getImageUrl(image) {
+  if (!image) return ''
+  if (image.startsWith('http')) return image
+  return `http://localhost/php-api-ecommerce${image}`
+}
 </script>
 
 <template>
-    <div class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded shadow">
-        <div v-if="product">
-            <img :src="product.image" alt="Product image" class="w-full h-64 object-cover rounded mb-4" />
-            <h1 class="text-3xl font-bold mb-2">{{ product.name }}</h1>
-            <p class="text-xl text-gray-700 mb-4">${{ product.price }}</p>
-        </div>
-
-        <div v-else-if="error" class="text-red-600 text-center">
-            ❌ {{ error }}
-        </div>
-
-        <div v-else class="text-center text-gray-500">
-            Loading...
-        </div>
-    </div>
+  <div v-if="loading">Cargando producto...</div>
+  <div v-else-if="error" class="text-red-500">{{ error }}</div>
+  <div v-else class="p-4 border rounded-lg shadow-md">
+    <img :src="getImageUrl(product.image)" class="w-full h-64 object-cover rounded" alt="Imagen del producto" />
+    <h1 class="text-2xl font-bold mt-4">{{ product.name }}</h1>
+    <p class="text-lg mt-2">${{ product.price }}</p>
+  </div>
 </template>
+
+
+
+
