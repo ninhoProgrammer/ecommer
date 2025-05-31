@@ -2,13 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import ProductsList from '../components/ProductsList.vue';
 
-const response = await fetch('http://localhost/php-api-ecommerce/get_products.php')
+const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
 const result = await response.json()
 const products = result.data ?? []
 ---
 
 <Layout>
-    <main class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <main class="p-6 flex flex-col items-center">
         <ProductsList client:load product={products} />
     </main>
 </Layout>

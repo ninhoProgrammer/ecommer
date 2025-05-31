@@ -15,9 +15,9 @@
 
     function addToCart() {
         if (!inCart.value) {
-            store.addToCart(props.product.id)
+            store.addToCart(props.product)
             console.log('✅ Added to cart:', props.product)
-        }1
+        }
     }
 
     function removeFromCart() {
@@ -31,21 +31,29 @@
 </script>
 
 <template>
-    <div class="bg-white p-4 rounded-lg shadow-md">
-        <img :src="product.image" alt="Product Image" class="w-80 h-48 object-cover rounded"/>
-        <h2 class="text-lg font-semibold mt-2">{{ product.name }}</h2>
-        <p class="text-gray-700">${{ product.price }}</p>
+    <div class="bg-white w-72 h-[380px] rounded-xl shadow-lg overflow-hidden flex flex-col justify-between transition-transform hover:scale-105">
+        <div class="relative h-48 w-full">
+            <img :src="product.image" alt="Product Image" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 left-0 w-full h-14 bg-gradient-to-t from-white/90 to-transparent"></div>
+        </div>
 
-        <button @click="addToCart" v-if="!inCart" class="bg-blue-500 text-white mt-2 px-4 py-2 rounded w-full hover:bg-blue-600">
+        <div class="px-4 pt-2">
+            <h2 class="text-lg font-semibold truncate">{{ product.name }}</h2>
+            <p class="text-gray-700">${{ product.price }}</p>
+        </div>
+
+        <div class="px-4 pb-4 mt-2 flex flex-col gap-2">
+        <button @click="addToCart" v-if="!inCart" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Agregar al carrito
         </button>
 
-        <button @click="removeFromCart" v-else class="bg-red-500 text-white mt-2 px-4 py-2 rounded w-full hover:bg-red-600">
+        <button @click="removeFromCart" v-else class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
             Eliminar del carrito
         </button>
 
-        <button @click="viewDetails" class="border mt-2 border-gray-300 px-4 py-2 rounded w-full hover:bg-gray-100">
+        <button @click="viewDetails" class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">
             Ver detalles
         </button>
+        </div>
     </div>
 </template>

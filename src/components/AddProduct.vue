@@ -1,14 +1,39 @@
 <script setup>
-    import { ref, watch } from 'vue'
+    import { ref, watch, onMounted } from 'vue'
 
     const name = ref('')
+    const description = ref('')
     const price = ref('')
     const imageUrl = ref('')
     const preview = ref('')
     const message = ref('')
     const loading = ref(false)
+    const categoryId = ref('')
+    const categories = ref([])
 
-    // Mostrar vista previa en tiempo real
+    // Obtener las categorías desde la API
+    const fetchCategories = async () => {
+        try {
+            const res = await fetch('http://localhost/php-api-ecommerce/category/get_categories.php')
+            const data = await res.json()
+            
+            if (data.success) {
+                categories.value = data.data // Asegúrate de que la estructura sea correcta
+            } 
+            else {
+                console.error('Error al obtener categorías:', data)
+            }
+        } 
+        catch (err) {
+            console.error('Error de red al obtener categorías:', err)
+        }
+    }
+
+    onMounted(() => {
+        fetchCategories()
+    })
+
+    // Vista previa de la imagen
     watch(imageUrl, (newUrl) => {
         preview.value = newUrl
     })
@@ -19,18 +44,20 @@
 
         const newProduct = {
             name: name.value.trim(),
+            description: description.value.trim(),
             price: parseFloat(price.value),
-            image: imageUrl.value.trim()
+            image: imageUrl.value.trim(),
+            category_id: parseInt(categoryId.value)
         }
 
-        if (!newProduct.name || isNaN(newProduct.price) || !newProduct.image) {
+        if (!newProduct.name || !newProduct.description || isNaN(newProduct.price) || !newProduct.image || isNaN(newProduct.category_id)) {
             message.value = '❌ Please fill in all fields correctly.'
             loading.value = false
             return
         }
 
         try {
-            const response = await fetch('http://localhost/php-api-ecommerce/add_product.php', {
+            const response = await fetch('http://localhost/php-api-ecommerce/product/add_product.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newProduct)
@@ -41,11 +68,12 @@
             if (response.ok) {
                 message.value = '✅ Product added successfully!'
                 name.value = ''
+                description.value = ''
                 price.value = ''
                 imageUrl.value = ''
+                categoryId.value = ''
                 preview.value = ''
-            } 
-            else {
+                } else {
                 message.value = '❌ Error: ' + result.error
             }
         } 
@@ -64,9 +92,18 @@
 
         <input v-model="name" type="text" placeholder="Product Name" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
 
+        <input v-model="description" type="text" placeholder="Description" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
         <input v-model="price" type="number" step="0.01" placeholder="Price" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
 
         <input v-model="imageUrl" type="text" placeholder="Image URL" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+        <select v-model="categoryId" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option disabled value="">Select Category</option>
+            <option v-for="cat in categories" :key="cat.ID" :value="cat.ID">
+                {{ cat.NAME }}
+            </option>
+        </select>
 
         <div v-if="preview" class="text-center">
             <p class="text-sm text-gray-600 mb-1">Image Preview:</p>

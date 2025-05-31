@@ -31,16 +31,44 @@ const store = reactive({
             console.error('❌ Error loading products:', err)
         }
     },
+    
+    async loadProductsByCategory() {
+        try {
+            const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
+            if (!response.ok) {
+                const text = await response.text()
+                throw new Error(`HTTP ${response.status}: ${text}`)
+            }
+            const result = await response.json()
+            if (!result.success) {
+                throw new Error(result.error || 'Unknown error from server')
+            }
 
-    addToCart(id) {
-        const item = store.cart.find(i => i.id === id)
+            // Agrupa productos por categoría y toma uno por cada categoría
+            const categoryMap = {}
+            result.data.forEach(product => {
+                if (!categoryMap[product.CATEGORY]) {
+                    categoryMap[product.CATEGORY] = {
+                        id: product.ID,
+                        name: product.NAME,
+                        price: product.PRICE,
+                        image: product.IMAGE,
+                        category: product.CATEGORY
+                    }
+                }
+            })
+            store.products = Object.values(categoryMap)
+        } catch (err) {
+            console.error('❌ Error loading products by category:', err)
+        }
+    },
+    
+    addToCart(product) {
+        const item = store.cart.find(i => i.id === product.id)
         if (item) {
             item.quantity += 1
         } else {
-            const product = store.products.find(p => p.id === id)
-            if (product) {
-                store.cart.push({ ...product, quantity: 1 })
-            }
+            store.cart.push({ ...product, quantity: 1 })
         }
     },
 
