@@ -11,7 +11,7 @@ const store = reactive({
 
     async loadProducts() {
         try {
-            const response = await fetch('http://localhost/php-api-ecommerce/get_products.php')
+            const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
             if (!response.ok) {
                 const text = await response.text()
                 throw new Error(`HTTP ${response.status}: ${text}`)
@@ -31,38 +31,96 @@ const store = reactive({
             console.error('❌ Error loading products:', err)
         }
     },
-    
-    async loadProductsByCategory() {
+
+    async loadTopProduct() {
         try {
             const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
             if (!response.ok) {
                 const text = await response.text()
                 throw new Error(`HTTP ${response.status}: ${text}`)
             }
+
             const result = await response.json()
             if (!result.success) {
                 throw new Error(result.error || 'Unknown error from server')
             }
 
-            // Agrupa productos por categoría y toma uno por cada categoría
-            const categoryMap = {}
-            result.data.forEach(product => {
-                if (!categoryMap[product.CATEGORY]) {
-                    categoryMap[product.CATEGORY] = {
-                        id: product.ID,
-                        name: product.NAME,
-                        price: product.PRICE,
-                        image: product.IMAGE,
-                        category: product.CATEGORY
-                    }
+            const allProducts = result.data
+
+            // Crear un mapa para almacenar el mejor producto por categoría
+            const topProductsMap = {}
+
+            for (const product of allProducts) {
+                const category = product.CATEGORY
+                const currentTop = topProductsMap[category]
+
+                if (!currentTop || product.TIMES_PURCHASED > currentTop.TIMES_PURCHASED) {
+                    topProductsMap[category] = product
                 }
-            })
-            store.products = Object.values(categoryMap)
+            }
+
+            // Convertir el mapa en un array y guardar en el store
+            store.products = Object.values(topProductsMap).map(product => ({
+                id: product.ID,
+                name: product.NAME,
+                price: product.PRICE,
+                image: product.IMAGE,
+                category: product.CATEGORY,
+                timesPurchased: product.TIMES_PURCHASED
+            }))
+
         } catch (err) {
-            console.error('❌ Error loading products by category:', err)
+            console.error('❌ Error loading top products per category:', err)
         }
     },
     
+    async loadTopProductPerCategory() {
+        try {
+            const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
+            if (!response.ok) {
+                const text = await response.text()
+                throw new Error(`HTTP ${response.status}: ${text}`)
+            }
+
+            const result = await response.json()
+            if (!result.success) {
+                throw new Error(result.error || 'Unknown error from server')
+            }
+
+            const allProducts = result.data
+
+            const topProductsMap = {}
+
+            for (const product of allProducts) {
+                const isActive = parseInt(product.IS_ACTIVE) === 1
+                const hasStock = parseInt(product.STOCK) > 0
+                if (!isActive || !hasStock) continue
+
+                const categoryId = product.CATEGORY_ID
+                const timesPurchased = parseFloat(product.TIMES_PURCHASED)
+
+                if (
+                    !topProductsMap[categoryId] ||
+                    timesPurchased > parseFloat(topProductsMap[categoryId].TIMES_PURCHASED)
+                ) {
+                    topProductsMap[categoryId] = product
+                }
+            }
+
+            store.products = Object.values(topProductsMap).map(product => ({
+                id: product.ID,
+                name: product.NAME,
+                description: product.DESCRIPTION,
+                price: product.PRICE,
+                image: product.IMAGE,
+                categoryId: product.CATEGORY_ID,
+                timesPurchased: parseFloat(product.TIMES_PURCHASED)
+            }))
+        } catch (err) {
+            console.error('❌ Error loading top products per category:', err)
+        }
+    },
+        
     addToCart(product) {
         const item = store.cart.find(i => i.id === product.id)
         if (item) {

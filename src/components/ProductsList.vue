@@ -14,7 +14,7 @@
 
     onMounted(() => {
         
-        store.loadProductsByCategory()
+        store.loadTopProductPerCategory()
     })
 </script>
 

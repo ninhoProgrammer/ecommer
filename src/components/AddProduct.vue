@@ -4,6 +4,7 @@
     const name = ref('')
     const description = ref('')
     const price = ref('')
+    const stock = ref('')
     const imageUrl = ref('')
     const preview = ref('')
     const message = ref('')
@@ -46,6 +47,7 @@
             name: name.value.trim(),
             description: description.value.trim(),
             price: parseFloat(price.value),
+            stock: parseInt(stock.value) || 0, // Asignar 0 si no se proporciona stock
             image: imageUrl.value.trim(),
             category_id: parseInt(categoryId.value)
         }
@@ -70,6 +72,7 @@
                 name.value = ''
                 description.value = ''
                 price.value = ''
+                stock.value = '' 
                 imageUrl.value = ''
                 categoryId.value = ''
                 preview.value = ''
@@ -96,7 +99,7 @@
 
         <input v-model="price" type="number" step="0.01" placeholder="Price" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
 
-        <input v-model="imageUrl" type="text" placeholder="Image URL" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        <input v-model="stock" type="number" placeholder="Stock" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
 
         <select v-model="categoryId" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option disabled value="">Select Category</option>
@@ -104,6 +107,8 @@
                 {{ cat.NAME }}
             </option>
         </select>
+
+        <input v-model="imageUrl" type="text" placeholder="Image URL" class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
 
         <div v-if="preview" class="text-center">
             <p class="text-sm text-gray-600 mb-1">Image Preview:</p>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProductsList from '../components/ProductsList.vue';
+import Hero from '../components/Hero.astro';
 
 const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
 const result = await response.json()
@@ -9,6 +10,11 @@ const products = result.data ?? []
 
 <Layout>
     <main class="p-6 flex flex-col items-center">
-        <ProductsList client:load product={products} />
+        <section id="hero" class="section bg-cover bg-center bg-no-repeat h-screen w-screen items-center justify-center flex text-[var(--color-secundary)] z-1 ">
+            <Hero />
+        </section>
+        <section id="hero" class="section bg-cover bg-center bg-no-repeat h-screen w-screen items-center justify-center flex text-[var(--color-secundary)] z-1 ">
+            <ProductsList client:load product={products} />
+        </section>
     </main>
 </Layout>

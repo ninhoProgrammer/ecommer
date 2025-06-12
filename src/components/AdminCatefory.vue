@@ -18,7 +18,7 @@
     const deleteProduct = async (id) => {
         if (confirm('¿Estás seguro de eliminar este producto?')) {
             await fetch(`http://localhost/php-api-ecommerce/product/delete_product.php?id=${id}`, {
-                method: 'DELETE'
+            method: 'DELETE'
             })
             fetchProducts()
         }
@@ -82,7 +82,8 @@
                     Eliminar
                 </button>
                 <button @click="toggleActive(prod)" :class="prod.IS_ACTIVE ? 'bg-yellow-500 hover:bg-yellow-600' : 'bg-green-500 hover:bg-green-600'" class="text-white px-3 py-1 rounded">
-                    {{ prod.IS_ACTIVE ? 'Suspender' : 'Reactivar' }}
+                
+                 {{ prod.IS_ACTIVE ? 'Suspender' : 'Reactivar' }}
                 </button>
                 <button @click="addStock(prod.ID)" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
                     Agregar stock
