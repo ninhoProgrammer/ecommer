@@ -1,6 +1,7 @@
 <script setup>
     import { useStore } from '../store'
     import { computed } from 'vue'
+    import '../styles/global.css'
 
     const props = defineProps({
         product: {
@@ -16,13 +17,11 @@
     function addToCart() {
         if (!inCart.value) {
             store.addToCart(props.product)
-            console.log('✅ Added to cart:', props.product)
         }
     }
 
     function removeFromCart() {
         store.removeFromCart(props.product.id)
-        console.log('🗑️ Removed from cart:', props.product)
     }
 
     function viewDetails() {
@@ -37,21 +36,21 @@
             <div class="absolute bottom-0 left-0 w-full h-14 bg-gradient-to-t from-white/90 to-transparent"></div>
         </div>
 
-        <div class="px-4 pt-2">
+        <div class="px-4 pt-2 text-gray-800 flex flex-col justify-between h-24">
             <h2 class="text-lg font-semibold truncate">{{ product.name }}</h2>
-            <p class="text-gray-700">${{ product.price }}</p>
+            <p class="">${{ product.price }}</p>
         </div>
 
         <div class="px-4 pb-4 mt-2 flex flex-col gap-2">
-        <button @click="addToCart" v-if="!inCart" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button @click="addToCart" v-if="!inCart" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-500">
             Agregar al carrito
         </button>
 
-        <button @click="removeFromCart" v-else class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+        <button @click="removeFromCart" v-else class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-800">
             Eliminar del carrito
         </button>
 
-        <button @click="viewDetails" class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">
+        <button @click="viewDetails" class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-800">
             Ver detalles
         </button>
         </div>

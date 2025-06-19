@@ -79,11 +79,9 @@
                 } else {
                 message.value = '❌ Error: ' + result.error
             }
-        } 
-        catch (err) {
+        } catch (err) {
             message.value = '❌ Network error: ' + err.message
-        } 
-        finally {
+        } finally {
             loading.value = false
         }
     }

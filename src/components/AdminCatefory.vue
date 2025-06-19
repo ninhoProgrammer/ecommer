@@ -35,15 +35,15 @@
     }
 
     const addStock = async (id) => {
-    const quantity = prompt('¿Cuántas unidades deseas agregar al stock?', '1')
-    if (quantity && !isNaN(quantity)) {
-        await fetch('http://localhost/php-api-ecommerce/product/add_stock.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, quantity: parseInt(quantity) })
-        })
-        fetchProducts()
-    }
+        const quantity = prompt('¿Cuántas unidades deseas agregar al stock?', '1')
+        if (quantity && !isNaN(quantity)) {
+            await fetch('http://localhost/php-api-ecommerce/product/add_stock.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, quantity: parseInt(quantity) })
+            })
+            fetchProducts()
+        }
     }
 
     onMounted(() => {

@@ -13,13 +13,13 @@
     })
 
     onMounted(() => {
-        store.loadTopProductPerCategory()
+        store.loadProducts()
     })
 </script>
 
 <template>
-    <div class="container mx-auto px-4 text-center py-6">
-        <h1 class="text-6xl text-gray-800 font-bold mb-10">Productos top</h1>
+    <div class="container mt-22 px-6 py-10">
+        <h1 class="text-3xl font-bold mb-4">Productos</h1>
 
         <div v-if="store.products.length === 0" class="text-gray-500">
             Cargando productos...

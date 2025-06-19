@@ -1,4 +1,17 @@
-# Astro Starter Kit: Basics
+<div align="center">
+    <h1 style="font-size: 3em; font-weight: bold; margin: 20px 0;">Ecomerce</h1>
+</div>
+
+## 📦 PHP Product API with Vue Frontend (XAMPP)
+This is a simple e-commerce backend using:
+
+🐘 PHP + MySQL (XAMPP)
+
+⚙️ REST API
+
+🛍️ Frontend in Vue (with Astro)
+
+📬 Communication using fetch or Postman
 
 ```sh
 npm create astro@latest -- --template basics
@@ -8,41 +21,49 @@ npm create astro@latest -- --template basics
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## 📦 About this project
+This is a simple e-commerce front using:
+- 🛍️ Frontend in Vue (with Astro)
 
-## 🚀 Project Structure
+This is a simple e-commerce back using:
+- ⚙️ REST API
+- 🐘 PHP + MySQL (XAMPP)
 
-Inside of your Astro project, you'll see the following folders and files:
+This repository is a starter for an e-commerce project built with Astro, Vue.js and connected to an API. Here you can develop an online store, fetch products from an API, and manage typical e-commerce features.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### Main features
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- **Modern frontend:** Uses Astro for a fast and optimized experience.
+- **Vue.js integration:** Interactive and dynamic UI components built with Vue.js.
+- **API consumption:** Easily integrate any REST API for products, users, or orders.
+- **Scalable structure:** Designed to grow and adapt to new requirements.
 
-## 🧞 Commands
+## 🔗 Useful resources
 
-All commands are run from the root of the project, from a terminal:
+- [Astro Documentation](https://docs.astro.build)
+- [Guide to connecting Astro with APIs](https://docs.astro.build/en/guides/integrations-guide/)
+- [Example of API consumption in Astro](https://docs.astro.build/en/guides/data-fetching/)
+-[PHP-APi-Ecomerce](https://github.com/ninhoProgrammer/php-api-ecommerce)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🚩 Suggested next steps
 
-## 👀 Want to learn more?
+1. Set your API URL in the environment files.
+2. Implement logic to display products from the API.
+3. Add features like shopping cart and user authentication.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Contributions and suggestions are welcome!
+
+## 🛒 About the API used
+
+This project uses the [PHP-API-Ecomerce](https://github.com/ninhoProgrammer/php-api-ecommerce) as the backend for managing products, users, and orders. The API provides RESTful endpoints for CRUD operations and makes integration with the Astro and Vue.js frontend straightforward.
+
+- **Technology:** PHP, MySQL
+- **Features:** Product management, user authentication, and order handling
+- **Easy integration:** Clear documentation and ready-to-use endpoints for frontend consumption
+
+Check the API repository for more details on installation and usage.
+
+## 📝 License
+
+This project is licensed under the terms of the MIT License. See the [MIT License](LICENSE)
