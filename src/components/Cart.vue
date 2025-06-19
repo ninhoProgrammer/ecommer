@@ -3,7 +3,7 @@
     const store = useStore()
 
     const total = () => {
-        return store.cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0).toFixed(2)
+        return store.cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
     }
 </script>
 
@@ -16,17 +16,17 @@
         </div>
 
         <ul v-else>
-            <li v-for="item in store.cart" :key="item.product.id" class="mb-2 border-b pb-2">
+            <li v-for="item in store.cart" :key="item.id" class="mb-2 border-b pb-2">
                 <div class="flex justify-between items-center">
                     <div>
-                        {{ item.product.name }}
+                        {{ item.name }}
                         <br />
-                        <span class="text-sm text-gray-600">${{ item.product.price }} c/u</span>
+                        <span class="text-sm text-gray-600">${{ item.price }} c/u</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button @click="store.decrementQuantity(item.product.id)" class="px-2 text-lg bg-gray-200 rounded">−</button>
+                        <button @click="store.decrementQuantity(item.id)" class="px-2 text-lg bg-gray-200 rounded">−</button>
                         <span class="w-6 text-center">{{ item.quantity }}</span>
-                        <button @click="store.incrementQuantity(item.product.id)" class="px-2 text-lg bg-gray-200 rounded">+</button>
+                        <button @click="store.incrementQuantity(item.id)" class="px-2 text-lg bg-gray-200 rounded">+</button>
                     </div>
                 </div>
             </li>

@@ -1,0 +1,29 @@
+---
+interface Props {
+	title: string;
+	img: string;
+	href: string;
+}
+
+const { href, title, img } = Astro.props;
+---
+
+<article  class="snap-start relative flex flex-col  max-w-76 gap-2 md:gap-4 px-3 py-3 bg-[var(--color-primary)] backdrop-blur-md rounded-[20px] md:rounded-[30px] bg-gradient-to-b from-white/60 to-white/0" >
+    <h2 class="text-2xl mt-3 font-bold text-white">
+        {title}
+    </h2>
+    <div class="flex grid-cols-2 items-center gap-2">
+        <div class="flex flex-row gap-2 justify-start items-center">
+            <img class="border-6 -mb-10 -ml-10 border-white rounded-[40px] h-20 w-20" src={img} alt="Side Image" />
+            <h2 class="text-base xl:text-lg text-white">
+                This Services
+            </h2>
+        </div>
+        <div class="flex flex-wrap justify-end items-center">
+            <a href="#" class="bg-[var(--color-secundary)] bg-opacity-90 justify-items-center text-white rounded-lg p-2 hover:-translate-y-1 hover:delay-150 hover:scale-110 hover:bg-[#6d2b25]">
+                View
+                <span>&rarr;</span>
+            </a>
+        </div>
+    </div>
+</article >
