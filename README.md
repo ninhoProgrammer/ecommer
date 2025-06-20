@@ -3,7 +3,7 @@
 </div>
 
 ## 📦 PHP Product API with Vue Frontend (XAMPP)
-![banner](https://raw.githubusercontent.com/MakeWebMX/MakeWebPrincipal/refs/heads/main/public/MakeWeb%20-%20Hero.webp)
+![banner](https://raw.githubusercontent.com/ninhoProgrammer/ecommer/refs/heads/master/public/EcommercePromo.webp)
 
 
 
