@@ -3,6 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import ProductsList from '../components/ProductsList.vue';
 import Hero from '../components/Hero.astro';
 import Banner from '../components/Banner.astro';
+import Exhibition from '../components/Exhibition.vue';
+import Abount from '../components/Abount.astro';
+import Contact from '../components/Contact.vue';
+import Trademark from '../components/Trademark.astro';
 
 const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
 const result = await response.json()
@@ -11,12 +15,36 @@ const products = result.data ?? []
 
 <Layout>
     <main class="flex flex-col items-center">
-        <section id="hero" class="bg-[url('../wallpaper.webp')] bg-center bg-no-repeat h-screen w-screen items-center justify-star flex text-white z-1 -mt-8">
+        <section id="hero" class="bg-[url('../wallpaper.webp')] bg-cover bg-no-repeat h-screen w-screen items-center justify-star flex text-[var(--color-accent)] z-1">
             <Hero />
         </section>
-        <Banner />
-        <section id="hero" class="bg-cover bg-center bg-no-repeat h-screen w-screen items-center justify-center flex text-[var(--color-secundary)] z-1 ">
+
+        <section class="h-[480px] md:h-0 z-2">
+            <Banner />
+        </section>     
+
+        <section id="hero" class="h-screen w-screen items-center justify-center flex text-[var(--color-secondary)] z-1 ">
             <ProductsList client:load product={products} />
+        </section>
+
+        <section class="h-44 md:h-16 z-2">
+            <Trademark />
+        </section>
+
+        <section id="exhibition" class="md:h-screen md:w-screen items-center justify-center flex text-[var(--color-secondary)] z-1" >
+            <Exhibition client:load />
+        </section>
+        
+        <section id="about" class="bg-[var(--color-primary)] bg-[url('../background.svg')] bg-cover bg-center bg-no-repeat h-screen w-screen items-center justify-center flex text-[var(--color-accent)] z-1">
+            <Abount />
+        </section>
+        
+        <section id="contact" class="md:h-screen md:w-screen items-center justify-center md:flex text-[var(--color-primary)] p-4 md:p-16 z-1">
+            <Contact client:load />
+        </section>
+        
+        <section class="bg-[var(--color-primary)] w-screen h-20 flex items-center justify-center text-[var(--color-accent)]">
+            <h1 class="text-2xl font-bold">¡Gracias por visitar nuestra tienda!</h1>
         </section>
     </main>
 </Layout>

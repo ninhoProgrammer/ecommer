@@ -3,15 +3,9 @@
 </div>
 
 ## 📦 PHP Product API with Vue Frontend (XAMPP)
-This is a simple e-commerce backend using:
+![banner](https://raw.githubusercontent.com/MakeWebMX/MakeWebPrincipal/refs/heads/main/public/MakeWeb%20-%20Hero.webp)
 
-🐘 PHP + MySQL (XAMPP)
 
-⚙️ REST API
-
-🛍️ Frontend in Vue (with Astro)
-
-📬 Communication using fetch or Postman
 
 ```sh
 npm create astro@latest -- --template basics

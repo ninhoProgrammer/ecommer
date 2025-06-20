@@ -36,17 +36,17 @@
             <div class="absolute bottom-0 left-0 w-full h-14 bg-gradient-to-t from-white/90 to-transparent"></div>
         </div>
 
-        <div class="px-4 pt-2 text-gray-800 flex flex-col justify-between h-24">
+        <div class="px-4 pt-2 flex flex-col justify-between h-24">
             <h2 class="text-lg font-semibold truncate">{{ product.name }}</h2>
-            <p class="">${{ product.price }}</p>
+            <p class="font-semibold  text-[var(--color-tertiary)]">${{ product.price }}</p>
         </div>
 
         <div class="px-4 pb-4 mt-2 flex flex-col gap-2">
-        <button @click="addToCart" v-if="!inCart" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-500">
+        <button @click="addToCart" v-if="!inCart" class="bg-[var(--color-tertiary)] text-[var(--color-accent)] px-4 py-2 rounded hover:bg-blue-500">
             Agregar al carrito
         </button>
 
-        <button @click="removeFromCart" v-else class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-800">
+        <button @click="removeFromCart" v-else class="bg-red-500 px-4 py-2 rounded hover:bg-red-800">
             Eliminar del carrito
         </button>
 
