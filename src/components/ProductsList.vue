@@ -19,7 +19,16 @@
 
 <template>
     <div class="container mx-auto px-4 text-center py-6">
-        <h1 class="text-6xl text-gray-800 font-bold mb-10">Productos top</h1>
+        <div class="flex items-center justify-center mb-10">
+            <span class="inline-block w-12 h-1 bg-[var(--color-secondary)] rounded-full mr-4"></span>
+
+            <h1 class="text-5xl sm:text-6xl font-extrabold drop-shadow-lg text-transparent bg-clip-text bg-[var(--color-secondary)] 
+                [text-shadow:2px_2px_0_#9d9e9e,-2px_2px_0_#dd0c0c,2px_-2px_0_#dd0c0c,-2px_-2px_0_#dd0c0c,2px_0px_0_#dd0c0c,0px_2px_0_#dd0c0c,-2px_0px_0_#dd0c0c,0px_-2px_0_#dd0c0c]">
+                🏆 Productos Top
+            </h1>
+
+            <span class="inline-block w-12 h-1 bg-[var(--color-secondary)] rounded-full ml-4"></span>
+        </div>
 
         <div v-if="store.products.length === 0" class="text-gray-500">
             Cargando productos...
@@ -30,3 +39,20 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+            .text-outline {
+                /* Para navegadores Chromium */
+                -webkit-text-stroke: 2px #dd0c0c;
+                /* Fallback para otros navegadores */
+                text-shadow:
+                    2px 2px 0 #222,
+                    -2px 2px 0 #222,
+                    2px -2px 0 #222,
+                    -2px -2px 0 #222,
+                    2px 0px 0 #222,
+                    0px 2px 0 #222,
+                    -2px 0px 0 #222,
+                    0px -2px 0 #222;
+            }
+            </style>

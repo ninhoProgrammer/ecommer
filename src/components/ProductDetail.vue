@@ -60,26 +60,27 @@
 </script>
 
 <template>
-    <div v-if="loading" class="text-center py-6 text-gray-500">Cargando producto...</div>
+    
+    <div v-if="loading" class="h-full w-full text-center mt-10 text-[var(--color-accent)]">Cargando producto...</div>
 
-    <div v-else-if="error" class="text-center text-red-500 py-6">{{ error }}</div>
+    <div v-else-if="error" class="h-full w-full text-center text-[var(--color-primary)] py-6">{{ error }}</div>
 
-    <div v-else class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div v-else class="flex flex-col mt-20  border bg-white text-[var(--color-secondary)] rounded-xl shadow-md ">
         <!-- Imagen del producto con difuminado -->
         <div class="relative h-64">
-            <img :src="product.image" alt="Imagen del producto" class="w-full h-full object-cover" />
-            <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white via-white/70 to-transparent rounded-b-xl"></div>
+            <img :src="product.image" alt="Imagen del producto" class="w-full h-full object-cover rounded-xl" />
+            <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white via-white/70 to-transparent "></div>
         </div>
 
         <!-- Detalles del producto -->
         <div class="p-6 space-y-3">
-            <h1 class="text-2xl font-bold text-gray-800">{{ product.name }}</h1>
-            <p class="text-gray-700 text-sm">{{ product.description }}</p>
-            <p class="text-xl font-semibold text-blue-600">${{ product.price }}</p>
+            <h1 class="text-2xl font-bold">{{ product.name }}</h1>
+            <p class=" text-sm">{{ product.description }}</p>
+            <p class="text-xl font-semibold text-[var(--color-tertiary)]">${{ product.price }}</p>
 
             <!-- Botones -->
             <div class="space-y-2">
-                <button @click="addToCart" v-if="!inCart" class="bg-blue-500 text-white w-full px-4 py-2 rounded hover:bg-blue-600">
+                <button @click="addToCart" v-if="!inCart" class="w-full bg-[var(--color-tertiary)] text-[var(--color-accent)] px-4 py-2 rounded hover:bg-blue-500">
                     Agregar al carrito
                 </button>
 
@@ -87,7 +88,7 @@
                     Eliminar del carrito
                 </button>
 
-                <button @click="goBack" class="w-full border border-gray-300 py-2 px-4 rounded hover:bg-gray-100">
+                <button @click="goBack" class="w-full border border-gray-300 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-800">
                     Volver
                 </button>
             </div>
