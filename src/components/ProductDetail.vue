@@ -61,7 +61,11 @@
 
 <template>
     
-    <div v-if="loading" class="h-full w-full text-center mt-10 text-[var(--color-accent)]">Cargando producto...</div>
+    <div v-if="loading" class="h-full w-full text-center mt-10 text-[var(--color-accent)]">
+        <h2 class="gradient-overlay text-2xl md:text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-6">
+            Cargando producto...
+        </h2>
+    </div>
 
     <div v-else-if="error" class="h-full w-full text-center text-[var(--color-primary)] py-6">{{ error }}</div>
 
