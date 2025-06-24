@@ -1,7 +1,7 @@
 <template>
     <!-- Left Info Panel -->
     <div class="bg-[var(--color-primary)] text-[var(--color-accent)] p-6 md:p-10 md:w-1/4 rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none shadow-lg">
-        <div class="space-y-10">
+        <div class="space-y-5 md:space-y-10">
 
             <!-- Call -->
             <div class="flex items-start gap-4">

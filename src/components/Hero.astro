@@ -1,12 +1,18 @@
-<div class="items-center text-center md:text-start md:relative p-3 md:p-0 md:ml-20">
-    <h2 class="gradient-overlay text-2xl md:text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-8">
+<div class="md:w-3/5 text-center md:text-end relative p-10 mt-10">
+    
+    <div class="absolute inset-0 -z-1 pointer-events-none">
+        <div class="w-full h-1/2 md:h-5/12 bg-gradient-to-r from-red-100 via-blue-200 to-purple-300 opacity-80 blur-2xl rounded-3xl"></div>
+    </div>
+
+    <h1 class="gradient-overlay text-4xl 2xl:text-8xl font-extrabold mb-8 z-2">
         Ingenieros Remotos
-    </h2>
-    <p class="text-base md:text-lg xl:text-xl 2xl:text-2xl font-light leading-relaxed max-w-2xl mb-6">
+    </h1>
+
+    <p class="text-[var(--color-accent)] md:text-[var(--color-tertiary)] text-base md:text-lg xl:text-xl 2xl:text-2xl">
         Todo lo que necesitas para tu empresa, Todos los productos que necesitas para el mantenimiento de tu empresa, al mejor precio.    
     </p>
 
-    <a class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-300 to-red-600 hover:from-red-600 hover:to-red-300 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition duration-300" href="/productList">
+    <a class="inline-flex items-center gap-3 px-8 py-4 mt-8 bg-gradient-to-r from-red-300 to-red-600 hover:from-red-600 hover:to-red-300 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition duration-300 z-2" href="/productList">
         <span class="text-lg">
             Buscar Producto
         </span>
@@ -16,32 +22,3 @@
     </a>
 </div>
 
-<style>
-    .gradient-overlay {
-        background: linear-gradient(
-            45deg,
-            #ff0800,
-            #3b82f6,  
-            #422f4b,
-            #e01515
-        );
-        -webkit-background-clip: text;
-        background-size: 300% 300%;
-        background-clip: text;
-        color : transparent;
-        text-transform: uppercase;
-        animation: gradient 5s ease infinite;
-    }
-  
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-</style>

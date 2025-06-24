@@ -16,7 +16,9 @@ const store = reactive({
                 const text = await response.text()
                 throw new Error(`HTTP ${response.status}: ${text}`)
             }
+
             const result = await response.json()
+            
             if (!result.success) {
                 throw new Error(result.error || 'Unknown error from server')
             }
@@ -27,6 +29,7 @@ const store = reactive({
                 price: product.PRICE,
                 image: product.IMAGE
             }))
+
         } catch (err) {
             console.error('❌ Error loading products:', err)
         }

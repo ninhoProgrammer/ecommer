@@ -2,9 +2,9 @@
 /* No props needed */
 ---
 
-<section class="flex border justify-center items-center min-h-[60vh] bg-gradient-to-br text-[var(--color-secondary)] bg-[var(--color-accent)]  p-8 rounded-2xl shadow-lg">
+<div class="flex flex-col-reverse md:flex-row space-x-0 md:space-x-10 border justify-center items-center min-h-[60vh] bg-gradient-to-br text-[var(--color-secondary)] bg-[var(--color-accent)] p-4 md:p-8 rounded-2xl shadow-lg">
     <div class="border max-w-md bg-[var(--color-accent)] p-8 rounded-xl shadow-md text-center">
-        <h1 class="text-3xl text-[var(--color-primary)] mb-4 font-bold">Sobre Nosotros</h1>
+        <h1 class="gradient-overlay text-3xl text-[var(--color-primary)] mb-4 font-bold">Sobre Nosotros</h1>
         <p class="text-base mb-6">
             Bienvenido a nuestra tienda en línea. Nos apasiona ofrecer productos de calidad y una experiencia de compra excepcional. Nuestro equipo está dedicado a ayudarte a encontrar lo que necesitas y brindarte el mejor servicio posible.
         </p>
@@ -23,4 +23,10 @@
             </li>
         </ul>
     </div>
-</section>
+    
+    <div class="max-w-[640px] max-h-[580px] justify-items-center rounded-2xl overflow-hidden">
+        <div class="rounded-full bg-[radial-gradient(circle,_rgba(1,1,1,0.4)_50%,_rgba(255,255,255,0)_80%)]">
+            <img src="../astronaut.webp" alt="Sobre Nosotros" class="w-full h-full object-cover" />
+        </div>
+    </div>
+</div>

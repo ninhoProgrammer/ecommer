@@ -10,10 +10,72 @@ import '../styles/global.css'
         <meta name="viewport" content="width=device-width" />
         <title>Mi Tienda</title>
     </head>
-    <body class="bg-[var(--color-accent)] ">
+    <body>
         <Header client:load />
         <Cart client:load />
         <slot />
     </body>
 </html>
+
+<style is:global>
+    html {
+		font-family: Kepler-296, 'Kepler 296', sans-serif;
+		font-size: 16px;
+	}
+
+    <style>
+    body {
+        position: relative;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: rgb(var(--color-accent-rgb, 255, 8, 0));
+        overflow: hidden;
+    }
+
+/* Capa de imagen de fondo difuminada */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../wallpaper.webp');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.06; /* 👈 Esta opacidad hace que apenas se vea */
+        z-index: 0;
+        pointer-events: none;
+        filter: blur(3px);
+    }
+
+	.gradient-overlay {
+        background: linear-gradient(
+            45deg,
+            #ff0800,
+            #3b82f6,  
+            #422f4b,
+            #e01515
+        );
+        -webkit-background-clip: text;
+        background-size: 300% 300%;
+        background-clip: text;
+        color : transparent;
+        text-transform: uppercase;
+        animation: gradient 5s ease infinite;
+    }
+  
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
 

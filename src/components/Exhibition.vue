@@ -58,31 +58,5 @@
 </script>
 
 <style>
-    .gradient-overlay {
-        background: linear-gradient(
-            45deg,
-            #ff0800,
-            #3b82f6,  
-            #422f4b,
-            #e01515
-        );
-        -webkit-background-clip: text;
-        background-size: 300% 300%;
-        background-clip: text;
-        color : transparent;
-        text-transform: uppercase;
-        animation: gradient 5s ease infinite;
-    }
-  
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
+    
 </style>

@@ -18,23 +18,24 @@
 </script>
 
 <template>
-    <div class="container mx-auto px-4 text-center py-6">
-        <div class="flex items-center justify-center mb-10">
-            <span class="inline-block w-12 h-1 bg-[var(--color-secondary)] rounded-full mr-4"></span>
+    <div class="items-center text-center p-4 md:p-10">
+        <div class="flex items-center justify-center mb-5 md:mb-10">
+            <span class="inline-block w-12 h-1 rounded-full mr-4"></span>
 
-            <h1 class="text-5xl sm:text-6xl font-extrabold drop-shadow-lg text-transparent bg-clip-text bg-[var(--color-secondary)] 
-                [text-shadow:2px_2px_0_#9d9e9e,-2px_2px_0_#dd0c0c,2px_-2px_0_#dd0c0c,-2px_-2px_0_#dd0c0c,2px_0px_0_#dd0c0c,0px_2px_0_#dd0c0c,-2px_0px_0_#dd0c0c,0px_-2px_0_#dd0c0c]">
+            <h1 class="gradient-overlay text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-6">
                 🏆 Productos Top
             </h1>
 
-            <span class="inline-block w-12 h-1 bg-[var(--color-secondary)] rounded-full ml-4"></span>
+            <span class="inline-block w-12 h-1 rounded-full ml-4"></span>
         </div>
 
-        <div v-if="store.products.length === 0" class="text-gray-500">
-            Cargando productos...
+        <div v-if="store.products.length === 0" class="text-center py-10">
+            <h2 class="gradient-overlay text-2xl md:text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-6">
+                Cargando producto...
+            </h2>
         </div>
 
-        <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
             <ProductCard v-for="product in store.products" :key="product.id" :product="product" class="w-full"/>
         </div>
     </div>

@@ -21,8 +21,10 @@
     <div class="container mt-22 px-6 py-10">
         <h1 class="text-3xl font-bold mb-4">Productos</h1>
 
-        <div v-if="store.products.length === 0" class="text-gray-500">
-            Cargando productos...
+        <div v-if="store.products.length === 0" class="text-center py-10">
+            <h2 class="gradient-overlay text-2xl md:text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-6">
+                Cargando producto...
+            </h2>
         </div>
 
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
