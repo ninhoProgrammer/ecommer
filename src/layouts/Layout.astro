@@ -30,7 +30,7 @@ import '../styles/global.css'
         margin: 0;
         padding: 0;
         background-color: rgb(var(--color-accent-rgb, 255, 8, 0));
-        overflow: hidden;
+        overflow: hidden; /* Evita el scroll */
     }
 
 /* Capa de imagen de fondo difuminada */
@@ -44,8 +44,8 @@ import '../styles/global.css'
         background-image: url('../wallpaper.webp');
         background-size: cover;
         background-position: center;
-        opacity: 0.06; /* 👈 Esta opacidad hace que apenas se vea */
-        z-index: 0;
+        opacity: 0.1; /* 👈 Esta opacidad hace que apenas se vea */
+        z-index: -1;
         pointer-events: none;
         filter: blur(3px);
     }

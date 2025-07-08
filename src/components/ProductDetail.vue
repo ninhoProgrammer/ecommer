@@ -60,44 +60,45 @@
 </script>
 
 <template>
-    
-    <div v-if="loading" class="h-full w-full text-center mt-10 text-[var(--color-accent)]">
-        <h2 class="gradient-overlay text-2xl md:text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-6">
-            Cargando producto...
-        </h2>
-    </div>
-
-    <div v-else-if="error" class="h-full w-full text-center text-[var(--color-primary)] py-6">{{ error }}</div>
-
-    <div v-else class="flex flex-col mt-20  border bg-white text-[var(--color-secondary)] rounded-xl shadow-md ">
-        <!-- Imagen del producto con difuminado -->
-        <div class="relative h-64">
-            <img :src="product.image" alt="Imagen del producto" class="w-full h-full object-cover rounded-xl" />
-            <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white via-white/70 to-transparent "></div>
+    <section class="flex flex-col items-center mt-16 md:mt-20 justify-center h-full w-full p-4 md:p-8 border bg-white rounded-xl shadow-md ">
+        <div v-if="loading" class="h-full w-full text-center text-[var(--color-accent)]">
+            <h2 class="gradient-overlay text-2xl md:text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-6">
+                Cargando producto...
+            </h2>
         </div>
 
-        <!-- Detalles del producto -->
-        <div class="p-6 space-y-3">
-            <h1 class="text-2xl font-bold">{{ product.name }}</h1>
-            <p class=" text-sm">{{ product.description }}</p>
-            <p class="text-xl font-semibold text-[var(--color-tertiary)]">${{ product.price }}</p>
+        <div v-else-if="error" class="h-full w-full text-center text-[var(--color-primary)] py-6">{{ error }}</div>
 
-            <!-- Botones -->
-            <div class="space-y-2">
-                <button @click="addToCart" v-if="!inCart" class="w-full bg-[var(--color-tertiary)] text-[var(--color-accent)] px-4 py-2 rounded hover:bg-blue-500">
-                    Agregar al carrito
-                </button>
+        <div v-else class="flex flex-col p-4 text-[var(--color-secondary)] ">
+            <!-- Imagen del producto con difuminado -->
+            <div class="relative h-64">
+                <img :src="product.image" alt="Imagen del producto" class="w-full h-full object-cover rounded-t-xl" />
+                <div class="absolute bottom-0 left-0 -right-1 w-full h-30 bg-gradient-to-t from-white via-white/80 to-transparent "></div>
+            </div>
 
-                <button @click="removeFromCart" v-else class="bg-red-500 text-white w-full px-4 py-2 rounded hover:bg-red-600">
-                    Eliminar del carrito
-                </button>
+            <!-- Detalles del producto -->
+            <div class="p-0 md:p-6 space-y-3 -mt-6 z-1">
+                <h1 class="text-2xl font-bold">{{ product.name }}</h1>
+                <p class="text-sm">{{ product.description }}</p>
+                <p class="text-xl font-semibold text-[var(--color-tertiary)]">${{ product.price }}</p>
 
-                <button @click="goBack" class="w-full border border-gray-300 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-800">
-                    Volver
-                </button>
+                <!-- Botones -->
+                <div class="space-y-2">
+                    <button @click="addToCart" v-if="!inCart" class="w-full bg-[var(--color-tertiary)] text-[var(--color-accent)] px-4 py-2 rounded hover:bg-blue-500">
+                        Agregar al carrito
+                    </button>
+
+                    <button @click="removeFromCart" v-else class="bg-red-500 text-white w-full px-4 py-2 rounded hover:bg-red-600">
+                        Eliminar del carrito
+                    </button>
+
+                    <button @click="goBack" class="w-full border border-gray-300 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-800">
+                        Volver
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 
