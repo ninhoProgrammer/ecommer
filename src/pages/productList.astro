@@ -10,7 +10,7 @@ const products = result.data ?? []
 
 <Layout>
     <main class="p-6 flex flex-col items-center">
-        <section id="hero" class="section bg-cover bg-center bg-no-repeat h-screen w-screen items-center justify-center flex text-[var(--color-secundary)] z-1 ">
+        <section id="hero" class="h-screen w-screen items-center justify-center text-[var(--color-secundary)] z-1 ">
             <ProductsAllList client:load product={products} />
         </section>
     </main>

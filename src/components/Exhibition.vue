@@ -16,9 +16,24 @@
             <h4 class="gradient-overlay text-2xl mb-2 underline">Producto destacado</h4>
             <h2 class="text-3xl xl:text-6xl font-bold mb-10 md:mb-32">{{ product.NAME }}</h2>
             <p class="mb-4">{{ product.DESCRIPTION }}</p>
-            <button @click="viewDetails" class="border  border-gray-300 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-800">
-                Ver
-            </button>
+            <div class="flex flex-row md:justify-start items-center gap-4">
+                <a class="inline-flex items-center gap-3 px-8 py-4 mt-8 bg-gradient-to-r from-red-300 to-red-600 hover:from-red-600 hover:to-red-300 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition duration-300 z-2" href="/productList">
+                    <span class="text-base">
+                        Ver Producto 
+                    </span>
+                    <div aria-hidden="true" class="flex items-center justify-center h-[32px] w-[32px] bg-white text-red-600 rounded-full ml-1 dark:bg-[#121212] dark:text-white">
+                        →
+                    </div>
+                </a>
+                <a class="inline-flex items-center gap-3 px-8 py-4 mt-8 bg-gradient-to-r from-red-300 to-red-600 hover:from-red-600 hover:to-red-300 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition duration-300 z-2" href="/productList">
+                    <span class="text-base">
+                        Mas Productos
+                    </span>
+                    <div aria-hidden="true" class="flex items-center justify-center h-[32px] w-[32px] bg-white text-red-600 rounded-full ml-1 dark:bg-[#121212] dark:text-white">
+                        →
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     

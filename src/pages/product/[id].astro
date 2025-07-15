@@ -16,7 +16,7 @@ const { id } = Astro.params
 ---
 
 <Layout>
-    <main class="max-w-4xl mx-auto md:container flex flex-col items-center p-4 md:p-0">
+    <main class="max-w-4xl mx-auto md:container flex flex-col items-center p-4 md:px-16">
         <ProductDetail client:load id={id} />
     </main>
 </Layout>
