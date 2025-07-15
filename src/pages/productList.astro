@@ -3,14 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import ProductsAllList from '../components/ProductsAllList.vue';
 import Hero from '../components/Hero.astro';
 
-const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
+const response = await fetch('https://php-api-ecommerce.vercel.app/product/get_products.php')
 const result = await response.json()
 const products = result.data ?? []
 ---
 
 <Layout>
     <main class="p-6 flex flex-col items-center">
-        <section id="hero" class="h-screen w-screen items-center justify-center text-[var(--color-secundary)] z-1 ">
+        <section id="hero" class="h-screen w-screen items-center justify-center flex text-[var(--color-secundary)] z-1 ">
             <ProductsAllList client:load product={products} />
         </section>
     </main>
