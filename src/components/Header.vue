@@ -56,6 +56,8 @@
         <div v-if="isClient && currentPath === '/'" :class="['flex-grow items-center', showMobileMenu ? 'block absolute top-16 left-0 w-full bg-[var(--color-tertiary)] shadow-lg z-50 p-4 md:static md:p-0 md:bg-transparent md:shadow-none' : 'hidden md:flex']">
             <nav class="space-x-4 flex flex-col md:flex-row md:space-x-4">
                 <a href="/" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Inicio</a>
+                <a href="#product" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Top</a>
+                <a href="#exhibition" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Destacado</a>
                 <a href="#about" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Nosotros</a>
                 <a href="#contact" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Contacto</a>
             </nav>

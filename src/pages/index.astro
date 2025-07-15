@@ -23,7 +23,7 @@ const products = result.data ?? []
             <Banner />
         </section>     
 
-        <section id="hero" class="md:h-screen md:w-screen items-center justify-center flex text-[var(--color-secondary)] z-1 ">
+        <section id="product" class="md:h-screen md:w-screen items-center justify-center flex text-[var(--color-secondary)] z-1 ">
             <ProductsList client:load product={products} />
         </section>
 
