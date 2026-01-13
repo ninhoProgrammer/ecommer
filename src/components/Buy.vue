@@ -8,10 +8,10 @@
 </script>
 
 <template>
-    <div class="max-w-xl mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Resumen de Compras</h1>
+    <div class="max-w-xl h-screen w-screen my-12 p-4">
+        <h1 class="text-2xl font-bold mb-4">Resumen de Compras: !</h1>
 
-        <div v-if="store.cart.length === 0">
+        <div v-if="store.cart.length === 0" class="text-center justify-center">
             <p>No tienes productos en el carrito.</p>
         </div>
 

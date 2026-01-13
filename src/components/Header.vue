@@ -41,45 +41,75 @@
 </script>
 
 <template>
-    <header class="flex text-[var(--color-accent)] w-full mx-auto p-2 rounded-2xl bg-[var(--color-tertiary)] top-0 z-10 fixed left-0 right-0 m-3 shadow-lg">
-        <div class="flex flex-grow">
-            <a href="/" class="text-xl xl:text-2xl font-bold">Mi Tienda</a>
-        </div>
+    <header class="fixed top-4 left-0 right-0 z-50 w-11/12 mx-auto transition-all duration-300">
+  <div class="flex items-center justify-between p-3 px-6 rounded-2xl backdrop-blur-md border border-white/10 shadow-xl">
+    
+    <div class="flex items-center">
+      <a href="/" class="text-xl xl:text-2xl font-black tracking-tight text-(--color-accent) hover:opacity-80 transition-opacity">
+        Mi<span class="text-(--color-primary)">Tienda</span>
+      </a>
+    </div>
 
-        <!-- Botón hamburguesa: visible solo en móvil -->
-        <button class="md:hidden ml-2 p-2 rounded bg-[var(--color-tertiary)] hover:text-[var(--color-primary)]" @click="toggleMenu" aria-label="Abrir menú">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-        </button>
-        
-        <div v-if="isClient && currentPath === '/'" :class="['flex-grow items-center', showMobileMenu ? 'block absolute top-16 left-0 w-full bg-[var(--color-tertiary)] shadow-lg z-50 p-4 md:static md:p-0 md:bg-transparent md:shadow-none' : 'hidden md:flex']">
-            <nav class="space-x-4 flex flex-col md:flex-row md:space-x-4">
-                <a href="/" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Inicio</a>
-                <a href="#product" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Top</a>
-                <a href="#exhibition" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Destacado</a>
-                <a href="#about" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Nosotros</a>
-                <a href="#contact" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Contacto</a>
-            </nav>
-        </div>
-        <div v-else :class="['flex-grow items-center', showMobileMenu ? 'block absolute top-16 left-0 w-full bg-[var(--color-tertiary)] shadow-lg z-50 p-4 md:static md:p-0 md:bg-transparent md:shadow-none' : 'hidden md:flex']">
-            <nav class="space-x-4 flex flex-col md:flex-row md:space-x-4">
-                <a href="/" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Inicio</a>
-                <a href="/productList" class="text-lg hover:bg-[var(--color-accent)] hover:p-1 hover:rounded-2xl hover:text-[var(--color-tertiary)]">Productos</a>
-            </nav>
-        </div>
+    <div v-if="isClient" class="hidden text-(--color-secondary) md:flex items-center bg-(--color-accent) rounded-xl px-4 py-1 hover:shadow-2xl transition-shadow">
+        <nav class="flex space-x-1">
+            <div v-if="currentPath === '/'" class="space-x-2">
+              <a href="/" class="nav-link hover:text-(--color-primary) hover:scale-115 transition-colors hover:border-b-2 hover:border-(--color-secondary)">Inicio</a>
+              <a href="#product" class="nav-link hover:text-(--color-primary) transition-colors hover:border-b-2 hover:border-(--color-secondary)">Top</a>
+              <a href="#exhibition" class="nav-link hover:text-(--color-primary) transition-colors hover:border-b-2 hover:border-(--color-secondary)">Destacado</a>
+              <a href="#about" class="nav-link hover:text-(--color-primary) transition-colors hover:border-b-2 hover:border-(--color-secondary)">Nosotros</a>
+              <a href="#contact" class="nav-link hover:text-(--color-primary) transition-colors hover:border-b-2 hover:border-(--color-secondary)">Contacto</a>
+            </div>
+            <div v-else class="space-x-2">
+                <a href="/" class="nav-link hover:text-(--color-primary) transition-colors hover:border-b-2 hover:border-(--color-secondary)">Inicio</a>
+                <a href="/productList" class="nav-link hover:text-(--color-primary) transition-colors hover:border-b-2 hover:border-(--color-secondary)">Productos</a>
+            </div>
+        </nav>
+    </div>
 
-        <!-- Botón carrito: siempre visible -->
-        <div class="relative flex items-center">
-            <button class="bg-[var(--color-secondary)] px-3 py-2 rounded-full hover:bg-[var(--color-primary)]" @click="toggleCart">
-                <svg class=" w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007.5 17h9a1 1 0 00.85-1.53L17 13M7 13V6a1 1 0 011-1h9a1 1 0 011 1v7" />
+    <div class="flex items-center gap-3">
+        <div v-if="currentPath !== '/login'" class="relative">
+            <button 
+                @click="toggleCart"
+                class="p-2.5 rounded-full bg-(--color-accent) text-(--color-tertiary) hover:scale-110 active:scale-95 transition-all shadow-md group"
+                >
+                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                 </svg>
-                <span v-if="isClient" class="bg-red-500 px-2 py-1 text-xs rounded-full absolute -top-1 -right-1">
+                <span v-if="cartCount > 0" class="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-(--color-accent)">
                     {{ cartCount }}
                 </span>
             </button>
-        </div>
-    </header>
+      </div>
+
+      <button 
+        @click="toggleMenu" 
+        class="md:hidden p-2 rounded-xl bg-black/5 text-(--color-accent) hover:bg-black/10 transition-colors"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path v-if="!showMobileMenu" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          <path v-else stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <transition name="fade-slide">
+    <div v-if="showMobileMenu" class="md:hidden absolute top-20 left-0 w-full p-4">
+      <nav class="flex flex-col gap-2 p-4 rounded-2xl bg-(--color-tertiary) shadow-2xl border-4 border-(--color-tertiary)">
+        <template v-if="currentPath === '/'">
+          <a href="/" class="mobile-nav-link">Inicio</a>
+          <a href="#product" class="mobile-nav-link">Top</a>
+          <a href="#exhibition" class="mobile-nav-link">Destacado</a>
+          <a href="#about" class="mobile-nav-link">Nosotros</a>
+          <a href="#contact" class="mobile-nav-link">Contacto</a>
+        </template>
+        <template v-else>
+          <a href="/" class="mobile-nav-link">Inicio</a>
+          <a href="/productList" class="mobile-nav-link">Productos</a>
+        </template>
+      </nav>
+    </div>
+  </transition>
+</header>
 </template>
 

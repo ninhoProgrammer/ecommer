@@ -1,9 +1,15 @@
 ---
 import BuyCart from '../components/Buy.vue';
 import Layout from '../layouts/Layout.astro';
-
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-    <BuyCart client:load />
+    <main>
+        <BuyCart client:load />
+        <section class="bg-(--color-primary) w-screen flex items-center justify-center text-(--color-accent)">
+            <Footer />
+        </section>
+    </main>
+
 </Layout>

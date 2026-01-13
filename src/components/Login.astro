@@ -1,0 +1,66 @@
+<div class="min-h-screen bg-(--color-secundary) flex items-center justify-center p-4">
+  <div class="bg-(--color-secondary) text-(--color-accent) rounded-3xl shadow-2xl flex flex-col md:flex-row max-w-4xl w-full h-96 overflow-hidden">
+    
+    <div class="bg-(--color-primary) p-10 md:w-1/3 flex flex-col justify-center items-center text-center space-y-6">
+      <h2 id="side-title" class="text-3xl font-bold">¡Bienvenido!</h2>
+      <p id="side-text">¿Aún no tienes cuenta? Regístrate para disfrutar de nuestros servicios.</p>
+      <button id="toggle-btn" class="border-2 border-(--color-accent) px-8 py-2 rounded-full hover:bg-(--color-accent) hover:text-(--color-primary) transition-all font-semibold">
+        Registrarse
+      </button>
+    </div>
+
+    <div class="p-10 md:w-2/3">
+      <div id="login-form" class="form-transition form-show">
+        <h2 class="text-3xl font-bold mb-8">Iniciar Sesión</h2>
+        <form class="space-y-6">
+          <input type="email" placeholder="Correo electrónico" class="w-full bg-transparent border-b border-(--color-accent) py-2 focus:outline-none focus:border-(--color-primary) transition-colors">
+          <input type="password" placeholder="Contraseña" class="w-full bg-transparent border-b border-(--color-accent) py-2 focus:outline-none focus:border-(--color-primary) transition-colors">
+          <button type="submit" class="border w-full text-(--color-accent) border-gray-300 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-800 hover:shadow-2xl" @click="handleSubmit">
+            <span v-if="status === ''">Entrar</span>
+            <!-- <span v-else-if="status === 'sending'">Registrando ...</span> -->
+          </button>
+        </form>
+      </div>
+
+      <div id="register-form" class="form-transition form-hide hidden">
+        <h2 class="text-3xl font-bold mb-8">Crear Cuenta</h2>
+        <form class="space-y-6">
+          <input type="text" placeholder="Nombre completo" class="w-full bg-transparent border-b border-(--color-accent) py-2 focus:outline-none focus:border-(--color-primary) transition-colors">
+          <input type="email" id="reg-email" placeholder="Correo electrónico" class="w-full bg-transparent border-b border-(--color-accent) py-2 focus:outline-none focus:border-(--color-primary) transition-colors">
+          <input type="password" placeholder="Contraseña" class="w-full bg-transparent border-b border-(--color-accent) py-2 focus:outline-none focus:border-(--color-primary) transition-colors">
+          <button type="submit" class="border w-full text-(--color-accent) border-gray-300 px-4 py-2 rounded hover:bg-gray-300 hover:text-gray-800 hover:shadow-2xl" @click="handleSubmit">
+            <span v-if="status === ''">Registrarse</span>
+            <!-- <span v-else-if="status === 'sending'">Registrando ...</span> -->
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('toggle-btn');
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  const sideTitle = document.getElementById('side-title');
+  const sideText = document.getElementById('side-text');
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      loginForm?.classList.toggle('hidden');
+      registerForm?.classList.toggle('hidden');
+      
+      if (loginForm?.classList.contains('hidden')) {
+        if (sideTitle) sideTitle.textContent = "¡Hola de nuevo!";
+        if (sideText) sideText.textContent = "¿Ya tienes cuenta? Inicia sesión aquí.";
+        toggleBtn.textContent = "Ir al Login";
+      } else {
+        if (sideTitle) sideTitle.textContent = "¡Bienvenido!";
+        if (sideText) sideText.textContent = "¿Aún no tienes cuenta? Regístrate aquí.";
+        toggleBtn.textContent = "Registrarse";
+      }
+    });
+  }
+</script>
+

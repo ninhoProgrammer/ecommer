@@ -1,24 +1,22 @@
+---
+import ButtonVue from './Button.vue';
+---
+
 <div class="md:w-3/5 text-center md:text-end relative p-10 mt-10">
     
-    <div class="absolute inset-0 -z-1 w-">
-        <div class="w-full h-1/2 md:h-5/12 bg-gradient-to-r from-red-100 via-blue-200 to-purple-300 opacity-80 blur-2xl rounded-3xl"></div>
+    <div class="absolute inset-0 rounded-2xl -z-1 w-full">
+        <div class="w-full h-1/2 md:h-5/12 bg-(--color-accent)/70 opacity-70 blur-2xl rounded-3xl"></div>
     </div>
 
-    <h1 class="gradient-overlay text-4xl 2xl:text-8xl font-extrabold mb-8 z-2 w-">
+    <!-- <h1 class="gradient-overlay text-6xl 2xl:text-8xl font-extrabold mb-8 z-2 w-full">
         Ingenieros Remotos
-    </h1>
+    </h1> -->
     
-    <spam class="relative text-[var(--color-accent)] text-center text-lg md:text-xl xl:text-2xl border-4 inline-block before:absolute before:-inset-1 before:block before:-skew-y-3 before:bg-[var(--color-tertiary)] z-0">
-        <a class="relative">Todos los productos que necesitas para el mantenimiento de tu empresa, al mejor precio. </a>
+    <spam class="relative text-(--color-accent) rounded-2xl mt-4 text-center text-lg md:text-xl xl:text-2xl border-4 inline-block before:absolute before:-inset-1 before:block before:-skew-y-2 before:bg-(--color-tertiary) before:rounded-2xl z-0">
+        <a class="rounded-2xl relative">Todos los productos que necesitas para el mantenimiento de tu empresa, al mejor precio. </a>
     </spam>
 
-    <a class="inline-flex items-center gap-3 px-8 py-4 mt-8 bg-gradient-to-r from-red-300 to-red-600 hover:from-red-600 hover:to-red-300 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition duration-300 z-2" href="/productList">
-        <span class="text-lg">
-            Buscar Producto
-        </span>
-        <div aria-hidden="true" class="flex items-center justify-center h-[32px] w-[32px] bg-white text-red-600 rounded-full ml-1 dark:bg-[#121212] dark:text-white">
-            →
-        </div>
-    </a>
+    <ButtonVue client:load text="Buscar Producto" href="productList"/>
+    
 </div>
 
