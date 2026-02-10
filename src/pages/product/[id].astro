@@ -4,10 +4,14 @@ import Layout from '../../layouts/Layout.astro'
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
+    // During static build on Vercel, return empty to use on-demand rendering
+    if (import.meta.env.PROD) {
+        console.log('Skipping static generation for product routes - using on-demand rendering')
+        return []
+    }
+
     try {
-        // Try to fetch from the API - use full URL for production environments
-        const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost/php-api-ecommerce/product/get_products.php'
-        const response = await fetch(apiUrl)
+        const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
         const result = await response.json()
         const products = result.data ?? []
 
@@ -16,7 +20,6 @@ export async function getStaticPaths() {
         }))
     } catch (error) {
         console.warn('Failed to fetch products for static generation:', error)
-        // Return empty array for build - routes will be generated on-demand
         return []
     }
 }
