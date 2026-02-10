@@ -60,31 +60,31 @@
 </script>
 
 <template>
-    <section class="flex flex-col items-center mt-16 md:mt-20 justify-center h-full w-full p-4 md:p-8 border bg-white rounded-xl shadow-md ">
-        <div v-if="loading" class="h-full w-full text-center text-[var(--color-accent)]">
+    <div class="flex flex-col items-center mt-16 md:mt-20 justify-center h-full w-auto p-4 md:p-8 border bg-white rounded-xl hover:shadow-2xl ">
+        <div v-if="loading" class="h-full w-full text-center text-(--color-accent)">
             <h2 class="gradient-overlay text-2xl md:text-4xl 2xl:text-6xl font-extrabold tracking-tight drop-shadow-lg mb-6">
                 Cargando producto...
             </h2>
         </div>
 
-        <div v-else-if="error" class="h-full w-full text-center text-[var(--color-primary)] py-6">{{ error }}</div>
+        <div v-else-if="error" class="h-full w-full text-center text-(--color-primary) py-6">{{ error }}</div>
 
-        <div v-else class="flex flex-col p-4 text-[var(--color-secondary)] ">
+        <div v-else class="flex flex-col text-(--color-secondary) ">
             <!-- Imagen del producto con difuminado -->
             <div class="relative h-64">
                 <img :src="product.image" alt="Imagen del producto" class="w-full h-full object-cover rounded-t-xl" />
-                <div class="absolute bottom-0 left-0 -right-1 w-full h-30 bg-gradient-to-t from-white via-white/80 to-transparent "></div>
+                <div class="absolute bottom-0 left-0 -right-1 w-full h-30 bg-linear-to-t from-white via-white/80 to-transparent "></div>
             </div>
 
             <!-- Detalles del producto -->
-            <div class="p-0 md:p-6 space-y-3 -mt-6 z-1">
+            <div class="space-y-3 -mt-6 z-1">
                 <h1 class="text-2xl font-bold">{{ product.name }}</h1>
                 <p class="text-sm">{{ product.description }}</p>
-                <p class="text-xl font-semibold text-[var(--color-tertiary)]">${{ product.price }}</p>
+                <p class="text-xl font-semibold text-(--color-tertiary)">${{ product.price }}</p>
 
                 <!-- Botones -->
                 <div class="space-y-2">
-                    <button @click="addToCart" v-if="!inCart" class="w-full bg-[var(--color-tertiary)] text-[var(--color-accent)] px-4 py-2 rounded hover:bg-blue-500">
+                    <button @click="addToCart" v-if="!inCart" class="w-full bg-(--color-primary) text-(--color-accent) px-4 py-2 rounded hover:bg-(--color-tertiary)">
                         Agregar al carrito
                     </button>
 
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 

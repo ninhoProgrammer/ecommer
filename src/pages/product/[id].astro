@@ -1,9 +1,10 @@
 ---
 import ProductDetail from '../../components/ProductDetail.vue'
 import Layout from '../../layouts/Layout.astro'
+import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-    const response = await fetch('http://php-api-ecommerce.vercel.app/product/get_products.php')
+    const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
     const result = await response.json()
     const products = result.data ?? []
 
@@ -16,7 +17,10 @@ const { id } = Astro.params
 ---
 
 <Layout>
-    <main class="max-w-4xl mx-auto md:container flex flex-col items-center p-4 md:px-16">
+    <main class="md:max-w-base mx-auto flex flex-col items-center md:px-3 mb-4">
         <ProductDetail client:load id={id} />
     </main>
+    <section class="bg-(--color-primary) w-screen flex items-center justify-center text-(--color-accent)">
+        <Footer />
+    </section>
 </Layout>

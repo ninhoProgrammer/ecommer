@@ -1,38 +1,24 @@
 <template>
     <div v-if="product" class="grid grid-cols-1 md:grid-cols-2 md:flex-row items-center justify-center min-h-screen p-8 md:p-20">
         <!-- Imagen con caja sobrepuesta -->
-        <div class="relative flex flex-grow justify-end items-center w-full h-full">
-            <img :src="product.IMAGE" :alt="product.NAME" class="md:w-1/2 h-[480px] object-cover rounded-lg" />
+        <div class="relative flex grow justify-end items-center w-full h-full">
+            <img :src="product.IMAGE" :alt="product.NAME" class="md:w-1/2 h-120 object-cover border shadow-xl hover:shadow-2xl rounded-lg" />
 
         <!-- Cuadro encima de la imagen -->
-            <div class="absolute md:top-1/2 left-1/5 md:left-1/4 bg-[var(--color-primary)] text-[var(--color-accent)] p-6 md:w-1/2 shadow-lg rounded-lg opacity-80">
+            <div class="absolute md:top-1/2 left-1/5 md:left-1/4 bg-(--color-primary) text-(--color-accent) p-6 md:w-1/2 shadow-lg border border-(--color-accent) rounded-lg opacity-80">
                 <h3 class="text-xl font-bold mb-10">{{ product.NAME }}</h3>
                 <p class="text-sm line-clamp-4">{{ product.DESCRIPTION }}</p>
             </div>
         </div>
 
         <!-- Texto a la derecha -->
-        <div class="flex flex-grow flex-col md:w-9/12 mt-10 md:mt-0 md:pl-12">
+        <div class="flex grow flex-col md:w-9/12 mt-10 md:mt-0 md:pl-12">
             <h4 class="gradient-overlay text-2xl mb-2 underline">Producto destacado</h4>
             <h2 class="text-3xl xl:text-6xl font-bold mb-10 md:mb-32">{{ product.NAME }}</h2>
             <p class="mb-4">{{ product.DESCRIPTION }}</p>
             <div class="flex flex-row md:justify-start items-center gap-4">
-                <a class="inline-flex items-center gap-3 px-8 py-4 mt-8 bg-gradient-to-r from-red-300 to-red-600 hover:from-red-600 hover:to-red-300 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition duration-300 z-2" href="/productList">
-                    <span class="text-base">
-                        Ver Producto 
-                    </span>
-                    <div aria-hidden="true" class="flex items-center justify-center h-[32px] w-[32px] bg-white text-red-600 rounded-full ml-1 dark:bg-[#121212] dark:text-white">
-                        →
-                    </div>
-                </a>
-                <a class="inline-flex items-center gap-3 px-8 py-4 mt-8 bg-gradient-to-r from-red-300 to-red-600 hover:from-red-600 hover:to-red-300 text-white font-bold rounded-full shadow-xl transform hover:scale-105 transition duration-300 z-2" href="/productList">
-                    <span class="text-base">
-                        Mas Productos
-                    </span>
-                    <div aria-hidden="true" class="flex items-center justify-center h-[32px] w-[32px] bg-white text-red-600 rounded-full ml-1 dark:bg-[#121212] dark:text-white">
-                        →
-                    </div>
-                </a>
+                <ButtonVue text="Ver Detalles" :href="`/product/${product.ID}`" />
+                <ButtonVue text="Mas Productos" href="productList" />
             </div>
         </div>
     </div>
@@ -46,6 +32,7 @@
 </template>
 
 <script setup>
+    import ButtonVue from './Button.vue';
     import { ref, onMounted } from 'vue'
     import { computed } from 'vue'
 

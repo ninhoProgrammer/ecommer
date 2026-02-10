@@ -7,6 +7,7 @@ import Exhibition from '../components/Exhibition.vue';
 import Abount from '../components/Abount.astro';
 import Contact from '../components/Contact.vue';
 import Trademark from '../components/Trademark.astro';
+import Footer from '../components/Footer.astro'; 
 
 const response = await fetch('http://localhost/php-api-ecommerce/product/get_products.php')
 const result = await response.json()
@@ -15,15 +16,15 @@ const products = result.data ?? []
 
 <Layout>
     <main class="flex flex-col items-center">
-        <section id="hero" class="bg-[url('../wallpaper.webp')] bg-cover bg-no-repeat h-screen w-screen items-star justify-end flex text-[var(--color-accent)] z-1">
+        <section id="hero" class="bg-[url('../wallpaper.webp')] bg-cover bg-no-repeat h-screen w-screen items-star justify-end flex text-(--color-accent) z-1">
             <Hero />
         </section>
 
-        <section class="z-2">
+        <section class="z-2 ">
             <Banner />
         </section>     
 
-        <section id="product" class="md:h-screen md:w-screen items-center justify-center flex text-[var(--color-secondary)] z-1 ">
+        <section id="product" class="md:h-screen md:w-screen items-center justify-center flex text-(--color-secondary) p-4 z-1 ">
             <ProductsList client:load product={products} />
         </section>
 
@@ -31,20 +32,21 @@ const products = result.data ?? []
             <Trademark />
         </section>
 
-        <section id="exhibition" class="md:h-screen md:w-screen items-center justify-center flex text-[var(--color-secondary)] z-1" >
+        <section id="exhibition" class="md:h-screen md:w-screen items-center justify-center flex text-(--color-secondary) z-1" >
             <Exhibition client:load />
+
         </section>
         
-        <section id="about" class="bg-[var(--color-primary)] bg-[url('../background.svg')] bg-cover bg-center bg-no-repeat md:h-screen md:w-screen items-center justify-center p-4 flex text-[var(--color-accent)] z-1">
+        <section id="about" class="bg-(--color-primary) bg-[url('../background.svg')] bg-cover bg-center bg-no-repeat md:h-screen md:w-screen items-center justify-center p-4 flex text-(--color-accent) z-1">
             <Abount />
         </section>
         
-        <section id="contact" class="md:h-screen md:w-screen items-center justify-center md:flex text-[var(--color-primary)] p-4 md:p-16 z-1">
+        <section id="contact" class="md:h-screen md:w-screen items-center justify-center md:flex text-(--color-primary) p-4 md:p-16 z-1">
             <Contact client:load />
         </section>
         
-        <section class="bg-[var(--color-primary)] w-screen h-20 flex items-center justify-center text-[var(--color-accent)]">
-            <h1 class="text-2xl font-bold">¡Gracias por visitar nuestra tienda!</h1>
+        <section class="bg-(--color-primary) w-screen flex items-center justify-center text-(--color-accent)">
+            <Footer />
         </section>
     </main>
 </Layout>

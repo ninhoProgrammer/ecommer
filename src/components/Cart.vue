@@ -1,14 +1,32 @@
 <script setup>
-    import { useStore } from '../store'
-    const store = useStore()
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useStore } from '../store'
 
-    const total = () => {
-        return store.cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+const store = useStore()
+const cartRef = ref(null)
+
+const handleClickOutside = (e) => {
+    if (!store.cartOpen) return
+    if (cartRef.value && !cartRef.value.contains(e.target)) {
+        store.cartOpen = false
     }
+}
+
+onMounted(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+    document.removeEventListener('mousedown', handleClickOutside)
+})
+
+const total = () => {
+    return store.cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+}
 </script>
 
 <template>
-    <div v-if="store.cartOpen" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 p-4 overflow-y-auto">
+    <div ref="cartRef" v-if="store.cartOpen" class="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 p-4 overflow-y-auto">
         <h2 class="text-xl font-bold mb-4">Carrito</h2>
 
         <div v-if="store.cart.length === 0">
@@ -35,6 +53,7 @@
         <div class="mt-4 font-semibold">
             Total: ${{ total() }}
         </div>
+
         <div class="flex flex-col text-center mt-4">
             <a href="/buy" class="mt-4 w-full bg-green-600 text-white px-4 py-2 rounded">Pagar</a>
             <a @click="store.clearCart" class="mt-4 w-full bg-red-600 text-white px-4 py-2 rounded">
@@ -42,6 +61,9 @@
             </a>
             <a @click="store.toggleCart" class="mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded">
                 Cerrar
+            </a>
+            <a href="/login" class="mt-4 w-full bg-(--color-primary) hover:bg-(--color-secondary) text-white px-4 py-2 rounded">
+                Cerrar sesion
             </a>
         </div>
     </div>

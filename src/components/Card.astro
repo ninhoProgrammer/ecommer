@@ -2,25 +2,24 @@
 interface Props {
 	title: string;
     text: string;
-	img: string;
 	href: string;
 }
 
-const { href, title, text, img } = Astro.props;
+const { href, title, text } = Astro.props;
 ---
 
-<article  class="snap-start relative flex flex-col w-72 gap-2 md:gap-4 px-3 py-3 bg-[var(--color-primary)] text-[var(--color-accent)] backdrop-blur-md rounded-[20px] md:rounded-[30px] bg-gradient-to-b from-white/60 to-white/0" >
-    <h2 class="text-xl md:text-3xl mt-3 font-bold ">
+<article  class="snap-start relative flex flex-col w-64 gap-1 md:gap-2 m-4 px-3 py-2 bg-(--color-primary) text-(--color-accent) backdrop-blur-md rounded-[10px] md:rounded-[20px] bg-linear-to-b from-white/60 to-white/0 hover:bg-linear-to-t hover:from-white/60 hover:to-white/0 shadow-xl" >
+    <h2 class="text-base md:text-lg mt-2 font-bold ">
         {title}
     </h2>
     <div class="grid grid-cols-2 items-center gap-2">
         <div class="flex flex-row gap-2 justify-start items-center">
-            <h2 class="p-2 text-sm md:text-lg">
+            <h2 class="p-1 text-xs md:text-sm">
                 {text}
             </h2>
         </div>
         <div class="flex flex-wrap justify-end items-center">
-            <a href={href} class="text-sm md:text-lg bg-[var(--color-secundary)] bg-opacity-90 justify-items-center rounded-lg hover:-translate-y-1 hover:delay-150 hover:p-2 hover:scale-110 hover:bg-[#6d2b25]">
+            <a href={href} class="text-xs md:text-sm bg-(--color-secundary) bg-opacity-90 justify-items-center rounded-lg hover:-translate-y-1 hover:delay-150 hover:p-2 hover:scale-110 hover:bg-[#c56114]">
                 View
                 <span>&rarr;</span>
             </a>
