@@ -7,7 +7,7 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
+  output: 'server',
   adapter: vercel(),
   vite: {
       plugins: [tailwindcss()],
