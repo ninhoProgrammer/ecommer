@@ -3,7 +3,7 @@
 </div>
 
 ## 📦 PHP Product API with Vue Frontend (XAMPP)
-![banner](https://raw.githubusercontent.com/ninhoProgrammer/ecommer/refs/heads/master/public/EcommercePromo.webp)
+![banner](https://github.com/ninhoProgrammer/ecommer/blob/master/public/EcommercePromo.webp)
 
 
 
